@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── ComUnite Design System — Base Styles ─── */
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight text-foreground;
+  }
+
+  /* Remove default button styles */
+  button {
+    @apply cursor-pointer;
+  }
+
+  /* Focus ring for accessibility */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2;
+  }
+
+  /* Scrollbar — minimal, clean */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted;
+  }
+}
+
+/* ─── ComUnite Component Layer ─── */
+
+@layer components {
+
+  /* App Shell Layout */
+  .cu-app-shell {
+    @apply min-h-screen bg-background;
+  }
+
+  /* Sidebar — full width variant */
+  .cu-sidebar {
+    @apply fixed top-0 left-0 bottom-0 bg-white shadow-sidebar z-30;
+    @apply flex flex-col;
+    width: theme('spacing.sidebar');
+    transition: width 0.2s ease;
+  }
+
+  /* Sidebar — icon-only variant (tablet) */
+  .cu-sidebar-collapsed {
+    width: theme('spacing.sidebar-sm');
+  }
+
+  /* Top bar */
+  .cu-topbar {
+    @apply fixed top-0 right-0 bg-white shadow-topbar z-20;
+    @apply flex items-center;
+    height: theme('spacing.topbar');
+    left: theme('spacing.sidebar');
+    transition: left 0.2s ease;
+  }
+
+  .cu-topbar-collapsed {
+    left: theme('spacing.sidebar-sm');
+  }
+
+  /* Mobile top bar */
+  .cu-mobile-topbar {
+    @apply fixed top-0 left-0 right-0 bg-white shadow-topbar z-20;
+    height: theme('spacing.topbar');
+  }
+
+  /* Main content area */
+  .cu-main {
+    @apply flex-1;
+    margin-left: theme('spacing.sidebar');
+    padding-top: theme('spacing.topbar');
+    transition: margin-left 0.2s ease;
+  }
+
+  .cu-main-collapsed {
+    margin-left: theme('spacing.sidebar-sm');
+  }
+
+  /* Mobile main — no sidebar offset, bottom nav offset */
+  .cu-main-mobile {
+    margin-left: 0;
+    padding-top: theme('spacing.topbar');
+    padding-bottom: theme('spacing.bottomnav');
+  }
+
+  /* Bottom navigation */
+  .cu-bottom-nav {
+    @apply fixed bottom-0 left-0 right-0 bg-white border-t border-border z-20;
+    height: theme('spacing.bottomnav');
+  }
+
+  /* Card */
+  .cu-card {
+    @apply bg-surface border border-border rounded-xl shadow-card;
+  }
+
+  .cu-card-hover {
+    @apply hover:shadow-card-hover transition-shadow duration-200;
+  }
+
+  /* Section heading */
+  .cu-section-label {
+    @apply text-2xs font-semibold uppercase tracking-widest text-muted;
+  }
+
+  /* Nav item */
+  .cu-nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-muted transition-colors;
+    @apply hover:bg-primary-50 hover:text-primary-700;
+  }
+
+  .cu-nav-item-active {
+    @apply bg-primary-50 text-primary-700 font-semibold;
+  }
+
+  /* Progress bar track */
+  .cu-progress-track {
+    @apply w-full bg-primary-100 rounded-full overflow-hidden;
+  }
+
+  /* Group status colours */
+  .cu-status-open {
+    @apply bg-primary-50 text-primary-700;
+  }
+
+  .cu-status-funding {
+    @apply bg-accent-100 text-accent-700;
+  }
+
+  .cu-status-funded {
+    @apply bg-success-light text-success;
+  }
+
+  .cu-status-completed {
+    @apply bg-success-light text-success;
+  }
+
+  .cu-status-cancelled {
+    @apply bg-error-light text-error;
+  }
+
+  .cu-status-extension {
+    @apply bg-warning-light text-warning;
+  }
+}
+
+/* ─── Utility layer ─── */
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Hide scrollbar but keep scroll */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Tap highlight off for nav items */
+  .no-tap-highlight {
+    -webkit-tap-highlight-color: transparent;
+  }
+}

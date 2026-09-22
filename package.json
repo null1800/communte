@@ -1,0 +1,19 @@
+{
+  "name": "communte-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build:shared": "npm run build --workspace=@communte/shared-types",
+    "build:api": "npm run build --workspace=@communte/api",
+    "build:web": "npm run build --workspace=@communte/web",
+    "build": "npm run build:shared && npm run build:api && npm run build:web",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
